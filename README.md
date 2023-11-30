@@ -16,7 +16,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 1. Start by deploying the [Mailchannels Worker](https://github.com/ment-labs/mailchannels-worker) on [Cloudflare Workers](https://workers.cloudflare.com/). Detailed instructions for this setup can be found in the [repository](https://github.com/ment-labs/mailchannels-worker), which includes all the necessary configurations.
 
-2. Then, add the following lines to the corresponding environment file, such as "config/environment/production.rb":
+2. Then, add the following lines to the corresponding environment file, such as `config/environments/production.rb`:
 
     ```ruby
     config.action_mailer.delivery_method = :mailchannels_worker
@@ -26,7 +26,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
     }
     ```
 
-    Ensure to replace "YOUR_WORKER_URL" with the actual path where the worker is deployed, and "YOUR_API_KEY" with the generated API Key stored in the worker environment variables.
+    Ensure to replace `YOUR_WORKER_URL` with the actual path where the worker is deployed, and `YOUR_API_KEY` with the generated API Key stored in the worker environment variables.
 
     Remember to store the API Key in a secure location, such as [Rails Credentials](https://guides.rubyonrails.org/security.html#custom-credentials) or secret environment variables.
 
