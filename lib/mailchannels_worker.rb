@@ -29,7 +29,7 @@ module MailchannelsWorker
           to: mail.to_addresses.map { |address| { email: address.address, name: address.name }.compact },
           cc: mail.cc_addresses.map { |address| { email: address.address, name: address.name }.compact }.presence,
           bcc: mail.bcc_addresses.map { |address| { email: address.address, name: address.name }.compact }.presence,
-          reply_to: (mail.header["Reply-To"]&.element&.addresses || []).map { |address| { email: address.address, name: address.name }.compact }.presence
+          reply_to: (mail.header["Reply-To"]&.element&.addresses || []).map { |address| { email: address.address, name: address.name }.compact }.first
         }.compact],
         content: mail.parts.map { |part| { type: part.content_type, value: part.decoded } }
       }
