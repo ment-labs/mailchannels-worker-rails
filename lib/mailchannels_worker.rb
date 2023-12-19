@@ -31,7 +31,7 @@ module MailchannelsWorker
           bcc: mail.bcc_addresses.map { |address| { email: address.address, name: address.name }.compact }.presence,
           reply_to: (mail.header["Reply-To"]&.element&.addresses || []).map { |address| { email: address.address, name: address.name }.compact }.first
         }.compact],
-        content: mail.parts.map { |part| { type: part.content_type, value: part.decoded } }
+        content: mail.multipart? ? mail.parts.map { |part| { type: part.content_type, value: part.decoded } } : [{ type: mail.content_type, value: mail.decoded }]
       }
       send_email(body)
     end
